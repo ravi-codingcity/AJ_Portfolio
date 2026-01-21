@@ -5,30 +5,39 @@ import { useInView } from "react-intersection-observer";
 const projects = [
   {
     id: 1,
-    title: "Neon Dreams Brand Identity",
+    title: "Astrology Predictions – Podcast Editing for News Channel",
     description:
-      "Complete brand identity design including logo, color palette, typography, and brand guidelines for a tech startup.",
-    image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
-    category: "branding",
-    type: "Graphic Design",
-
-    link: "#",
+      "Edited an Astrology Predictions podcast for a news channel, enhancing storytelling through precise cuts, sound balance, and visual polish.",
+    image: "https://img.youtube.com/vi/O9YdWvqfBPc/maxresdefault.jpg",
+    category: "video",
+    type: "Video Editing",
+    link: "https://www.youtube.com/watch?v=O9YdWvqfBPc",
     featured: true,
     isExternal: false,
   },
   {
     id: 2,
-    title: "Urban Fashion Campaign",
+    title: "News Bulletin & Headlines VFX Animation",
     description:
-      "Cinematic video campaign for urban streetwear brand featuring dynamic editing and color grading.",
+      "Created VFX and motion graphics for news bulletins and headlines, designed for broadcast use with dynamic transitions and a clean, professional look.",
     image: "https://img.youtube.com/vi/V9nje9lXm2o/maxresdefault.jpg",
     category: "video",
     type: "Video Editing",
-    target: "_blank",
     link: "https://www.youtube.com/watch?v=V9nje9lXm2o",
     featured: true,
     isExternal: true,
+  },
+   {
+    id: 3,
+    title: "Cancer Awareness Podcast – Dr. Anshuman Kumar",
+    description:
+      "Edited a medical podcast featuring Cancer Surgeon Dr. Anshuman Kumar, ensuring clear audio, smooth transitions, and a broadcast-ready final cut.",
+    image: "https://img.youtube.com/vi/pLTvFRtklT0/maxresdefault.jpg",
+    category: "video",
+    type: "Video Editing",
+    link: "https://www.youtube.com/watch?v=pLTvFRtklT0",
+    featured: true,
+    isExternal: false,
   },
   {
     id: 3,
