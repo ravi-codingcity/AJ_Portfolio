@@ -16,7 +16,7 @@ const projects = [
     type: "Video Editing",
     link: "https://www.youtube.com/watch?v=O9YdWvqfBPc",
     featured: true,
-    isExternal: false,
+    isExternal: true,
   },
   {
     id: 2,
@@ -40,21 +40,35 @@ const projects = [
     type: "Video Editing",
     link: "https://www.youtube.com/watch?v=pLTvFRtklT0",
     featured: true,
-    isExternal: false,
+    isExternal: true,
   },
   {
     id: 3,
-    title: "Motion Graphics Showreel",
+    title: "Basics of Graphic Design | Physics Wallah",
     description:
-      "Animated showreel featuring dynamic typography, logo animations, and visual effects.",
+      "This motion graphic video covers the fundamentals of graphic design, including principles, tools, and techniques for creating visually appealing designs.",
     image:
-      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop",
+      "https://img.youtube.com/vi/oKAjzBXc74E/maxresdefault.jpg",
     category: "motion",
     type: "Motion Graphics",
 
-    link: "#",
+    link: "https://youtube.com/shorts/oKAjzBXc74E?feature=share",
     featured: true,
-    isExternal: false,
+    isExternal: true,
+  },
+   {
+    id: 3,
+    title: "Secret to Download Free Tools | Animation",
+    description:
+      "I have created this animation video on the topic Secret to Download Free Tools for Physics Wallah.",
+    image:
+      "https://img.youtube.com/vi/upxPN-BStA0/maxresdefault.jpg",
+    category: "motion",
+    type: "Motion Graphics",
+
+    link: "https://youtube.com/shorts/upxPN-BStA0?feature=share",
+    featured: true,
+    isExternal: true,
   },
   {
     id: 4,
@@ -97,32 +111,19 @@ const projects = [
   },
   {
     id: 7,
-    title: "Animated Logo Collection",
+    title: "LINKEDIN VS FB | Physics Wallah",
     description:
-      "Series of animated logo reveals and intros for various clients.",
+      "I have created animation logo intro for Physics Wallah on the topic LINKEDIN VS FB.",
     image:
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop",
+      "https://img.youtube.com/vi/h26hGtbNkzQ/maxresdefault.jpg",
     category: "motion",
     type: "Logo Animation",
 
-    link: "#",
+    link: "https://youtube.com/shorts/h26hGtbNkzQ?feature=share",
     featured: false,
-    isExternal: false,
+    isExternal: true,
   },
-  {
-    id: 8,
-    title: "Documentary Edit",
-    description:
-      "Feature-length documentary editing with narrative storytelling and emotional pacing.",
-    image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=600&fit=crop",
-    category: "video",
-    type: "Documentary",
-
-    link: "#",
-    featured: false,
-    isExternal: false,
-  },
+  
 ];
 
 const categories = [
@@ -265,6 +266,8 @@ export default function Projects() {
                       >
                         <motion.a
                           href={project.link}
+                          target={project.isExternal ? "_blank" : undefined}
+                          rel={project.isExternal ? "noopener noreferrer" : undefined}
                           className="px-6 py-3 rounded-full bg-white text-black font-medium flex items-center gap-2 hover:bg-orange-400 hover:text-white transition-colors"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -307,6 +310,8 @@ export default function Projects() {
                       <div className="flex items-center justify-between">
                         <motion.a
                           href={project.link}
+                          target={project.isExternal ? "_blank" : undefined}
+                          rel={project.isExternal ? "noopener noreferrer" : undefined}
                           className="text-orange-400 text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all"
                           whileHover={{ x: 5 }}
                         >

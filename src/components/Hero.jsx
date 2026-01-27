@@ -159,7 +159,7 @@ export default function Hero() {
                 </svg>
               </motion.button>
               <motion.button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('projects')}
                 className="btn-outline flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
