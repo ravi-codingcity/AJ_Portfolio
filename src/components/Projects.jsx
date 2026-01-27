@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import Magazine from "../assets/Booklate.jpeg";
+import Furniture from "../assets/Furniture.jpeg";
+import Creatives from "../assets/Creatives.jpeg";
 
 const projects = [
   {
@@ -21,7 +24,7 @@ const projects = [
     description:
       "Created VFX and motion graphics for news bulletins and headlines, designed for broadcast use with dynamic transitions and a clean, professional look.",
     image: "https://img.youtube.com/vi/V9nje9lXm2o/maxresdefault.jpg",
-    category: "video",
+    category: "motion",
     type: "Video Editing",
     link: "https://www.youtube.com/watch?v=V9nje9lXm2o",
     featured: true,
@@ -58,8 +61,7 @@ const projects = [
     title: "Minimal Magazine Layout",
     description:
       "Clean, modern magazine design with emphasis on typography and white space.",
-    image:
-      "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=800&h=600&fit=crop",
+    image: Magazine,
     category: "print",
     type: "Print Design",
 
@@ -72,10 +74,9 @@ const projects = [
     title: "Product Launch Video",
     description:
       "High-energy product launch video with 3D elements and dynamic transitions.",
-    image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop",
-    category: "video",
-    type: "Video Production",
+    image: Furniture,
+    category: "print",
+    type: "Print Design",
 
     link: "#",
     featured: false,
@@ -86,8 +87,7 @@ const projects = [
     title: "Social Media Kit",
     description:
       "Comprehensive social media design kit with templates for Instagram, TikTok, and YouTube.",
-    image:
-      "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=600&fit=crop",
+    image: Creatives,
     category: "branding",
     type: "Social Media",
 
