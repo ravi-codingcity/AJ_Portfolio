@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Magazine from "../assets/Booklate.jpeg";
-import Furniture from "../assets/Furniture.jpeg";
-import Creatives from "../assets/Creatives.jpeg";
+import Creatives_3 from "../assets/Creatives_3.jpg";
+import Creatives_2 from "../assets/Creatives_2.jpg";
+import Creatives_1 from "../assets/Creatives_1.jpg";
+
 
 const projects = [
   {
@@ -72,10 +73,10 @@ const projects = [
   },
   {
     id: 4,
-    title: "Minimal Magazine Layout",
+    title: "Covid-19 Awareness Post",
     description:
-      "Clean, modern magazine design with emphasis on typography and white space.",
-    image: Magazine,
+      "I have designed this creative post on the topic Covid-19 Awareness",
+    image: Creatives_3,
     category: "print",
     type: "Print Design",
 
@@ -85,10 +86,10 @@ const projects = [
   },
   {
     id: 5,
-    title: "Product Launch Video",
+    title: "Modern Furniture Social Media Post",
     description:
-      "High-energy product launch video with 3D elements and dynamic transitions.",
-    image: Furniture,
+      "i have designed this creative post on the topic Modern Furniture for social media.",
+    image: Creatives_2,
     category: "print",
     type: "Print Design",
 
@@ -98,10 +99,10 @@ const projects = [
   },
   {
     id: 6,
-    title: "Social Media Kit",
+    title: "Digital Marketing Social Media",
     description:
-      "Comprehensive social media design kit with templates for Instagram, TikTok, and YouTube.",
-    image: Creatives,
+      "I have designed this creative post on the topic Digital Marketing for social media.",
+    image: Creatives_1,
     category: "branding",
     type: "Social Media",
 
@@ -137,6 +138,7 @@ const categories = [
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [hoveredProject, setHoveredProject] = useState(null);
+  const [modalProject, setModalProject] = useState(null);
 
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -147,6 +149,19 @@ export default function Projects() {
     activeCategory === "all"
       ? projects
       : projects.filter((project) => project.category === activeCategory);
+
+  // Check if project should open in modal (branding or print categories)
+  const shouldOpenModal = (project) => {
+    return project.category === "branding" || project.category === "print";
+  };
+
+  // Handle project click
+  const handleProjectClick = (e, project) => {
+    if (shouldOpenModal(project)) {
+      e.preventDefault();
+      setModalProject(project);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -264,15 +279,19 @@ export default function Projects() {
                         }}
                         className="absolute inset-0 flex items-center justify-center"
                       >
-                        <motion.a
-                          href={project.link}
-                          target={project.isExternal ? "_blank" : undefined}
-                          rel={project.isExternal ? "noopener noreferrer" : undefined}
+                        <motion.button
+                          onClick={(e) => handleProjectClick(e, project)}
+                          {...(!shouldOpenModal(project) && {
+                            as: "a",
+                            href: project.link,
+                            target: project.isExternal ? "_blank" : undefined,
+                            rel: project.isExternal ? "noopener noreferrer" : undefined,
+                          })}
                           className="px-6 py-3 rounded-full bg-white text-black font-medium flex items-center gap-2 hover:bg-orange-400 hover:text-white transition-colors"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          View Project
+                          {shouldOpenModal(project) ? "View Image" : "View Project"}
                           <svg
                             className="w-4 h-4"
                             fill="none"
@@ -283,10 +302,10 @@ export default function Projects() {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               strokeWidth={2}
-                              d="M14 5l7 7m0 0l-7 7m7-7H3"
+                              d={shouldOpenModal(project) ? "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" : "M14 5l7 7m0 0l-7 7m7-7H3"}
                             />
                           </svg>
-                        </motion.a>
+                        </motion.button>
                       </motion.div>
 
                       {/* Project Type Badge */}
@@ -308,14 +327,20 @@ export default function Projects() {
                         {project.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <motion.a
-                          href={project.link}
-                          target={project.isExternal ? "_blank" : undefined}
-                          rel={project.isExternal ? "noopener noreferrer" : undefined}
+                        <motion.button
+                          onClick={(e) => {
+                            if (shouldOpenModal(project)) {
+                              handleProjectClick(e, project);
+                            } else if (project.isExternal) {
+                              window.open(project.link, "_blank", "noopener,noreferrer");
+                            } else {
+                              window.location.href = project.link;
+                            }
+                          }}
                           className="text-orange-400 text-sm font-medium flex items-center gap-1 hover:gap-2 transition-all"
                           whileHover={{ x: 5 }}
                         >
-                          Details
+                          {shouldOpenModal(project) ? "View Image" : "Details"}
                           <svg
                             className="w-4 h-4"
                             fill="none"
@@ -329,7 +354,7 @@ export default function Projects() {
                               d="M9 5l7 7-7 7"
                             />
                           </svg>
-                        </motion.a>
+                        </motion.button>
                       </div>
                     </div>
                   </div>
@@ -364,6 +389,68 @@ export default function Projects() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {modalProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setModalProject(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative max-w-5xl max-h-[90vh] w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <motion.button
+                onClick={() => setModalProject(null)}
+                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </motion.button>
+
+              {/* Modal Content */}
+              <div className="creative-card overflow-hidden">
+                <img
+                  src={modalProject.image}
+                  alt={modalProject.title}
+                  className="w-full h-auto max-h-[70vh] object-contain bg-gray-900"
+                />
+                <div className="p-6">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-400 border border-orange-500/20">
+                    {modalProject.type}
+                  </span>
+                  <h3 className="text-2xl font-bold text-white mt-3 mb-2">
+                    {modalProject.title}
+                  </h3>
+                  <p className="text-gray-400">{modalProject.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
